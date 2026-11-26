@@ -1,4 +1,22 @@
-/* Kustomisasi tombol panah (Arrows) Carousel */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f3f4f6;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #1F2937;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Kustomisasi Panah Carousel */
 .slick-prev:before,
 .slick-next:before {
   font-size: 30px !important;
@@ -6,7 +24,6 @@
   opacity: 0.8 !important;
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
-
 .slick-prev {
   left: 20px !important;
   z-index: 30;
@@ -15,8 +32,6 @@
   right: 20px !important;
   z-index: 30;
 }
-
-/* Kustomisasi titik navigasi (Dots) Carousel */
 .slick-dots {
   bottom: 20px !important;
   z-index: 30;
@@ -27,6 +42,6 @@
   opacity: 0.5 !important;
 }
 .slick-dots li.slick-active button:before {
-  color: #F59E0B !important; /* Warna Emas Bisroll */
+  color: #F59E0B !important;
   opacity: 1 !important;
 }
