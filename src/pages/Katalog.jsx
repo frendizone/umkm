@@ -12,7 +12,7 @@ export default function Katalog() {
   const categories = ['Semua', 'Risol Mayo', 'Risol Ayam', 'Risol Spesial', 'Martabak'];
 
   // GANTI NOMOR INI DENGAN NOMOR WHATSAPP ANDA
-  const waNumber = '6281234567890'; 
+  const waNumber = '6281225309301'; 
 
   useEffect(() => {
     fetch('/products.json')
