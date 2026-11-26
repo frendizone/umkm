@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#F59E0B',     // Kuning Emas (Amber-500)
-        primaryHover: '#D97706', // Emas Gelap (Amber-600)
+        primary: '#F59E0B',
+        primaryHover: '#D97706',
         dark: '#1F2937',
       },
       fontFamily: {
