@@ -2,7 +2,7 @@
   {
     "id": "1",
     "question": "Berapa lama pengiriman?",
-    "answer": "Pengiriman memakan waktu 2-3 hari kerja ke seluruh Indonesia."
+    "answer": "Pengiriman memakan waktu 2-3 hari kerja ke seluruh Indonesia via ekspedisi terpercaya."
   },
   {
     "id": "2",
@@ -11,17 +11,22 @@
   },
   {
     "id": "3",
-    "question": "Jam buka warung?",
+    "question": "Jam buka Bisroll?",
     "answer": "Kami buka setiap hari dari jam 08.00 sampai 20.00 WIB."
   },
   {
     "id": "4",
     "question": "Cara pesan?",
-    "answer": "Klik tombol plus di pojok kanan bawah lalu ikuti arahan admin via WhatsApp."
+    "answer": "Klik tombol kuning dengan ikon plus (+) di menu produk, nanti akan langsung terhubung ke WhatsApp kami."
   },
   {
     "id": "5",
-    "question": "Makanan pedas?",
-    "answer": "Ya Kak, kami bisa menyesuaikan level kepedasan (pedas sedang, pedas, atau tidak pedas)."
+    "question": "Risolnya tahan berapa lama?",
+    "answer": "Risol kami tanpa pengawet, sebaiknya dikonsumsi maksimal 2 hari setelah pengiriman atau dipanaskan kembali."
+  },
+  {
+    "id": "6",
+    "question": "Minimal order berapa?",
+    "answer": "Minimal order untuk pengiriman luar kota adalah 1 box (isi 10 pcs)."
   }
 ]
