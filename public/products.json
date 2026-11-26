@@ -1,38 +1,74 @@
 [
   {
     "id": "1",
-    "name": "Nasi Goreng Spesial",
-    "description": "Nasi goreng dengan telur, ayam, dan kerupuk. Dibuat dengan bumbu rahasia warung kami.",
-    "price": 25000,
-    "stock": 20,
-    "category": "Makanan Berat",
-    "imageUrl": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&q=80"
+    "name": "Risol Mayo Original",
+    "description": "Risol renyah dengan isian mayones gurih dan telur rebus.",
+    "price": 10000,
+    "stock": 50,
+    "category": "Risol Mayo",
+    "imageUrl": "https://images.unsplash.com/photo-1626200419199-391ae4be7a41?w=500&q=80"
   },
   {
     "id": "2",
-    "name": "Es Teh Manis",
-    "description": "Es teh segar manis, cocok diminum siang hari.",
-    "price": 5000,
-    "stock": 50,
-    "category": "Minuman",
-    "imageUrl": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=80"
+    "name": "Risol Mayo Pedas",
+    "description": "Risol mayo dengan sensasi pedas nagih dari cabai pilihan.",
+    "price": 10000,
+    "stock": 45,
+    "category": "Risol Mayo",
+    "imageUrl": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=500&q=80"
   },
   {
     "id": "3",
-    "name": "Pisang Goreng Keju",
-    "description": "Pisang goreng renyah dengan topping keju melimpah.",
-    "price": 15000,
-    "stock": 15,
-    "category": "Camilan",
-    "imageUrl": "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=500&q=80"
+    "name": "Risol Jagung Manis",
+    "description": "Perpaduan manisnya jagung dan gurihnya kulit risol yang crispy.",
+    "price": 10000,
+    "stock": 30,
+    "category": "Risol Spesial",
+    "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80"
   },
   {
     "id": "4",
-    "name": "Ayam Bakar Madu",
-    "description": "Ayam bakar dengan olesan madu manis dan sambal terasi.",
-    "price": 30000,
-    "stock": 10,
-    "category": "Makanan Berat",
-    "imageUrl": "https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=500&q=80"
+    "name": "Risol Ayam Suwir Original",
+    "description": "Isian ayam suwir melimpah dengan bumbu rempah klasik.",
+    "price": 12000,
+    "stock": 40,
+    "category": "Risol Ayam",
+    "imageUrl": "https://images.unsplash.com/photo-1625938145744-e3805153d903?w=500&q=80"
+  },
+  {
+    "id": "5",
+    "name": "Risol Ayam Suwir Pedas",
+    "description": "Ayam suwir pedas mercon yang bikin nagih dan berkeringat.",
+    "price": 12000,
+    "stock": 35,
+    "category": "Risol Ayam",
+    "imageUrl": "https://images.unsplash.com/photo-1562967914-608f82629710?w=500&q=80"
+  },
+  {
+    "id": "6",
+    "name": "Risol Rogut",
+    "description": "Isian daging giling, wortel, dan kentang dengan bumbu rogut khas.",
+    "price": 12000,
+    "stock": 25,
+    "category": "Risol Spesial",
+    "imageUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80"
+  },
+  {
+    "id": "7",
+    "name": "Risol Sosis",
+    "description": "Sosis premium pilihan dibalut kulit risol renyah.",
+    "price": 11000,
+    "stock": 40,
+    "category": "Risol Spesial",
+    "imageUrl": "https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=500&q=80"
+  },
+    {
+    "id": "8",
+    "name": "Martabak Telur",
+    "description": "Martabak telur gurih dengan isian daging cincang, daun bawang, dan telur bebek melimpah.",
+    "price": 20000,
+    "stock": 20,
+    "category": "Martabak",
+    "imageUrl": "https://images.unsplash.com/photo-1625398407796-82650a8c135f?w=500&q=80"
   }
 ]
