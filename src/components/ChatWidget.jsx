@@ -4,18 +4,19 @@ export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([{ 
     sender: 'bot', 
-    text: 'Halo Kak! Selamat datang di Kuliner UMKM 🍽️. Ada yang bisa saya bantu?' 
+    text: 'Halo Kak! Selamat datang di Kuliner UMKM 🍽️. Mau tanya menu, harga, atau cara pesan?' 
   }]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  
+  // State untuk menyimpan data FAQ dan Produk
   const [faqs, setFaqs] = useState([]);
+  const [products, setProducts] = useState([]);
 
-  // Load FAQ dari file JSON publik
+  // Ambil data dari JSON saat aplikasi dimuat
   useEffect(() => {
-    fetch('/faqs.json')
-      .then(res => res.json())
-      .then(data => setFaqs(data))
-      .catch(err => console.error("Gagal memuat FAQ", err));
+    fetch('/faqs.json').then(res => res.json()).then(data => setFaqs(data)).catch(console.error);
+    fetch('/products.json').then(res => res.json()).then(data => setProducts(data)).catch(console.error);
   }, []);
 
   const sendMessage = (e) => {
@@ -27,31 +28,77 @@ export default function ChatWidget() {
     setInput('');
     setLoading(true);
 
-    // Simulasi loading sebentar
     setTimeout(() => {
       const lowerMsg = userMsg.toLowerCase();
+      
+      // ==========================================
+      // 1. CEK KHUSUS: Jika user tanya "MENU"
+      // ==========================================
+      const keywordsMenu = ['menu', 'makanan', 'minuman', 'jual', 'daftar', 'apa saja', 'list'];
+      const isAskingMenu = keywordsMenu.some(kata => lowerMsg.includes(kata));
+
+      if (isAskingMenu && products.length > 0) {
+        // Ambil maksimal 5 menu untuk ditampilkan di chat
+        const menuTampil = products.slice(0, 5).map(p => `• ${p.name} (Rp ${p.price.toLocaleString('id-ID')})`).join('\n');
+        const balasanMenu = `Tentu Kak! Ini beberapa menu andalan kami hari ini:\n\n${menuTampil}\n\nSilakan lihat katalog lengkap di halaman utama ya! 😊`;
+        
+        setMessages(prev => [...prev, { sender: 'bot', text: balasanMenu }]);
+        setLoading(false);
+        return; // Berhenti di sini, jangan cari ke FAQ
+      }
+
+      // ==========================================
+      // 2. CEK KHUSUS: Jika user tanya "HARGA"
+      // ==========================================
+      const keywordsHarga = ['harga', 'berapa', 'biaya'];
+      if (keywordsHarga.some(kata => lowerMsg.includes(kata)) && products.length > 0) {
+        // Cari produk yang namanya mungkin disebut user
+        const produkDisebut = products.find(p => lowerMsg.includes(p.name.toLowerCase()));
+        
+        if (produkDisebut) {
+          setMessages(prev => [...prev, { sender: 'bot', text: `Harga ${produkDisebut.name} adalah Rp ${produkDisebut.price.toLocaleString('id-ID')} per porsi Kak.` }]);
+        } else {
+          setMessages(prev => [...prev, { sender: 'bot', text: `Harga menu kami bervariasi Kak, mulai dari Rp 5.000 sampai Rp 30.000. Silakan cek gambar menu di atas ya!` }]);
+        }
+        setLoading(false);
+        return;
+      }
+
+      // ==========================================
+      // 3. PENCARIAN FAQ (Lebih Cerdas)
+      // ==========================================
       let bestMatch = null;
       let highestScore = 0;
 
-      // Pencarian kata kunci sederhana
+      // Kata-kata yang diabaikan agar tidak memicu salah paham
+      const stopwords = ['apa', 'itu', 'yang', 'di', 'ke', 'dari', 'untuk', 'ada', 'bisa', 'kak', 'min', 'berapa', 'bagaimana', 'cara', 'saya', 'mau', 'ingin', 'tanya', 'dong', 'ya', 'apa', 'saja', 'menunya'];
+      
+      // Pecah pesan user jadi kata penting (minimal 3 huruf)
+      const cleanWords = lowerMsg.split(' ').filter(w => !stopwords.includes(w) && w.length > 2);
+
       faqs.forEach(faq => {
         const lowerFaq = faq.question.toLowerCase();
         let score = 0;
-        lowerMsg.split(' ').forEach(word => {
-          if (word.length > 2 && lowerFaq.includes(word)) score++;
+        
+        cleanWords.forEach(word => {
+          // Jika kata penting user ada di pertanyaan FAQ, tambah skor
+          if (lowerFaq.includes(word)) score++;
         });
 
+        // Hanya terima jika skornya lebih tinggi dari sebelumnya
         if (score > highestScore) {
           highestScore = score;
           bestMatch = faq;
         }
       });
 
+      // Jika ada kecocokan kata kunci minimal 1
       if (bestMatch && highestScore > 0) {
         setMessages(prev => [...prev, { sender: 'bot', text: bestMatch.answer }]);
       } else {
         setMessages(prev => [...prev, { sender: 'bot', text: 'Mohon maaf Kak, saya belum tahu jawabannya. Silakan hubungi admin via WhatsApp ya 🙏' }]);
       }
+      
       setLoading(false);
     }, 800);
   };
@@ -81,8 +128,8 @@ export default function ChatWidget() {
                 )}
                 <div className={`max-w-[80%] p-3.5 rounded-2xl text-sm leading-relaxed shadow-sm ${
                   msg.sender === 'user' 
-                    ? 'bg-primary text-white rounded-tr-none' 
-                    : 'bg-white border border-gray-100 text-gray-700 rounded-tl-none'
+                    ? 'bg-primary text-white rounded-tr-none whitespace-pre-wrap' 
+                    : 'bg-white border border-gray-100 text-gray-700 rounded-tl-none whitespace-pre-wrap'
                 }`}>
                   {msg.text}
                 </div>
