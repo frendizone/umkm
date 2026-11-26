@@ -4,7 +4,7 @@ export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([{ 
     sender: 'bot', 
-    text: 'Halo Kak! Selamat datang di Kuliner UMKM 🍽️. Mau tanya menu, harga, atau cara pesan?' 
+    text: 'Halo Kak! Selamat datang di Bisroll 🥟. Mau tanya varian risol, harga, atau cara pesan?' 
   }]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
