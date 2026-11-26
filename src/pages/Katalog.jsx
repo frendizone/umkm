@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import ChatWidget from '../components/ChatWidget';
 import toast from 'react-hot-toast';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Katalog() {
   const [products, setProducts] = useState([]);
@@ -8,11 +11,21 @@ export default function Katalog() {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('Semua');
 
-  // Daftar Kategori Baru
   const categories = ['Semua', 'Risol Mayo', 'Risol Ayam', 'Risol Spesial', 'Martabak'];
+  const waNumber = '6281234567890'; // GANTI DENGAN NOMOR WA ANDA
 
-  // GANTI NOMOR INI DENGAN NOMOR WHATSAPP ANDA
-  const waNumber = '6281225309301'; 
+  // Pengaturan Carousel
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3500,
+    pauseOnHover: true,
+    arrows: true,
+  };
 
   useEffect(() => {
     fetch('/products.json')
@@ -41,13 +54,15 @@ export default function Katalog() {
     return matchSearch && matchCategory;
   });
 
+  // Ambil 5 produk teratas untuk Carousel
+  const carouselProducts = products.slice(0, 5);
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-      {/* Navbar dengan Logo Baru */}
+      {/* Navbar */}
       <nav className="bg-white border-b border-gray-100 px-6 py-4 sticky top-0 z-30 shadow-sm">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
-            {/* Logo Emas dengan Ikon Risol */}
             <div className="bg-primary text-white w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-primary/30">
               🥟
             </div>
@@ -59,33 +74,58 @@ export default function Katalog() {
         </div>
       </nav>
 
-      {/* Banner Hero dengan Warna Emas */}
-      <div className="bg-gradient-to-br from-primary to-yellow-500 text-white py-16 px-6 text-center relative overflow-hidden">
-        <div className="relative z-10 max-w-3xl mx-auto">
-          <span className="bg-white/20 text-white px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase mb-4 inline-block backdrop-blur-sm">
-            Renyah, Gurih, Bikin Nagih
-          </span>
-          <h2 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
-            Risol Spesial Bisroll
-          </h2>
-          <p className="text-lg md:text-xl opacity-90 mb-8 font-medium">
-            Dibuat fresh setiap hari dengan isian melimpah. Pilih varian favoritmu dan pesan langsung via WhatsApp!
-          </p>
-          
-          <div className="bg-white p-2 rounded-2xl shadow-2xl flex items-center max-w-xl mx-auto">
-            <span className="pl-4 text-gray-400">🔍</span>
-            <input 
-              type="text" 
-              placeholder="Cari risol favoritmu..." 
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="flex-1 px-4 py-3 text-gray-800 bg-transparent focus:outline-none text-sm font-medium"
-            />
+      {/* HERO SECTION DENGAN CAROUSEL */}
+      <div className="relative bg-dark">
+        {!loading && carouselProducts.length > 0 && (
+          <div className="max-w-full overflow-hidden">
+            <Slider {...carouselSettings}>
+              {carouselProducts.map(p => (
+                <div key={p.id}>
+                  <div className="relative h-[400px] md:h-[500px] w-full">
+                    {/* Overlay Gelap */}
+                    <div className="absolute inset-0 bg-black/50 z-10"></div>
+                    {/* Foto Produk */}
+                    <img src={p.imageUrl} alt={p.name} className="w-full h-full object-cover" />
+                    
+                    {/* Teks di Atas Foto */}
+                    <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
+                      <span className="bg-primary text-white px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase mb-4">
+                        Menu Andalan
+                      </span>
+                      <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-2 leading-tight drop-shadow-lg">
+                        {p.name}
+                      </h2>
+                      <p className="text-white/90 text-sm md:text-base mb-6 max-w-xl drop-shadow">
+                        {p.description}
+                      </p>
+                      <button 
+                        onClick={() => handleOrderWA(p)}
+                        className="bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-primaryHover transition-colors shadow-lg shadow-primary/40"
+                      >
+                        Pesan Sekarang - Rp {p.price.toLocaleString('id-ID')}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Slider>
           </div>
-        </div>
+        )}
       </div>
 
-      <main className="flex-1 max-w-6xl mx-auto w-full p-6 -mt-8 relative z-20">
+      {/* AREA PENCARIAN (Di bawah Carousel) */}
+      <div className="bg-white shadow-sm relative z-20 -mt-6 mx-6 rounded-2xl max-w-3xl md:mx-auto p-2 flex items-center border border-gray-100">
+        <span className="pl-4 text-gray-400">🔍</span>
+        <input 
+          type="text" 
+          placeholder="Cari risol favoritmu..." 
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="flex-1 px-4 py-3 text-gray-800 bg-transparent focus:outline-none text-sm font-medium"
+        />
+      </div>
+
+      <main className="flex-1 max-w-6xl mx-auto w-full p-6 pt-10">
         {/* Filter Kategori */}
         <div className="flex gap-3 mb-8 overflow-x-auto pb-2 scrollbar-hide">
           {categories.map((cat) => (
@@ -94,7 +134,7 @@ export default function Katalog() {
               onClick={() => setCategory(cat)}
               className={`px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all shadow-sm ${
                 category === cat 
-                  ? 'bg-dark text-white shadow-md' 
+                  ? 'bg-primary text-white shadow-md shadow-primary/30' 
                   : 'bg-white text-gray-600 border border-gray-200 hover:border-primary hover:text-primary'
               }`}
             >
@@ -118,7 +158,6 @@ export default function Katalog() {
               <div key={p.id} className="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 group flex flex-col overflow-hidden">
                 <div className="relative overflow-hidden aspect-square">
                   <img src={p.imageUrl} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  
                   <div className="absolute top-3 right-3 bg-white/90 backdrop-blur px-2.5 py-1 rounded-lg text-xs font-bold text-primary shadow-sm">
                     Sisa {p.stock}
                   </div>
@@ -135,7 +174,6 @@ export default function Katalog() {
                         Rp {p.price.toLocaleString('id-ID')}
                       </span>
                     </div>
-                    {/* Tombol Pesan via WA */}
                     <button 
                       onClick={() => handleOrderWA(p)}
                       className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primaryHover transition-colors shadow-lg shadow-primary/30"
