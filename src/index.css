@@ -1,17 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  background-color: #f3f4f6;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  color: #1F2937;
+/* Kustomisasi tombol panah (Arrows) Carousel */
+.slick-prev:before,
+.slick-next:before {
+  font-size: 30px !important;
+  color: white !important;
+  opacity: 0.8 !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+.slick-prev {
+  left: 20px !important;
+  z-index: 30;
 }
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.slick-next {
+  right: 20px !important;
+  z-index: 30;
+}
+
+/* Kustomisasi titik navigasi (Dots) Carousel */
+.slick-dots {
+  bottom: 20px !important;
+  z-index: 30;
+}
+.slick-dots li button:before {
+  font-size: 12px !important;
+  color: white !important;
+  opacity: 0.5 !important;
+}
+.slick-dots li.slick-active button:before {
+  color: #F59E0B !important; /* Warna Emas Bisroll */
+  opacity: 1 !important;
 }
