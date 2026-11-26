@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "Nasi Goreng Spesial",
+    "description": "Nasi goreng dengan telur, ayam, dan kerupuk. Dibuat dengan bumbu rahasia warung kami.",
+    "price": 25000,
+    "stock": 20,
+    "category": "Makanan Berat",
+    "imageUrl": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&q=80"
+  },
+  {
+    "id": "2",
+    "name": "Es Teh Manis",
+    "description": "Es teh segar manis, cocok diminum siang hari.",
+    "price": 5000,
+    "stock": 50,
+    "category": "Minuman",
+    "imageUrl": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=80"
+  },
+  {
+    "id": "3",
+    "name": "Pisang Goreng Keju",
+    "description": "Pisang goreng renyah dengan topping keju melimpah.",
+    "price": 15000,
+    "stock": 15,
+    "category": "Camilan",
+    "imageUrl": "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=500&q=80"
+  },
+  {
+    "id": "4",
+    "name": "Ayam Bakar Madu",
+    "description": "Ayam bakar dengan olesan madu manis dan sambal terasi.",
+    "price": 30000,
+    "stock": 10,
+    "category": "Makanan Berat",
+    "imageUrl": "https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=500&q=80"
+  }
+]

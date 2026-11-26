@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "question": "Berapa lama pengiriman?",
+    "answer": "Pengiriman memakan waktu 2-3 hari kerja ke seluruh Indonesia."
+  },
+  {
+    "id": "2",
+    "question": "Apakah bisa COD?",
+    "answer": "Bisa, COD hanya tersedia untuk area dalam kota (ongkir menyesuaikan)."
+  },
+  {
+    "id": "3",
+    "question": "Jam buka warung?",
+    "answer": "Kami buka setiap hari dari jam 08.00 sampai 20.00 WIB."
+  },
+  {
+    "id": "4",
+    "question": "Cara pesan?",
+    "answer": "Klik tombol plus di pojok kanan bawah lalu ikuti arahan admin via WhatsApp."
+  },
+  {
+    "id": "5",
+    "question": "Makanan pedas?",
+    "answer": "Ya Kak, kami bisa menyesuaikan level kepedasan (pedas sedang, pedas, atau tidak pedas)."
+  }
+]
